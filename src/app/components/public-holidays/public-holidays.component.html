@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-title></mat-card-title>
+  <mat-card-content>
+    <ng-container *ngIf="holidays$|async as list else loading">
+    <mat-form-field appearance="fill" *ngIf="list.length>0 else emptyState">
+      <mat-label>Choose a holiday</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of list" [value]="item">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </ng-container>
+    <ng-template #emptyState>
+      Oooops no holidays
+    </ng-template>
+    <ng-template #loading>
+      <mat-progress-bar
+        class="example-margin"
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [value]="50">
+      </mat-progress-bar></ng-template>
+  </mat-card-content>
+</mat-card>
+
